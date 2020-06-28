@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qing.dao.TeacherMapper">
+    <resultMap id="teacherStudent" type="teacher">
+        <id column="tid" property="id"></id>
+        <result column="tname" property="name"></result>
+        <collection property="studentsssss" ofType="Student">
+            <id column="sid" property="id"></id>
+            <result column="sname" property="name"></result>
+            <result column="tid" property="tid"></result>
+        </collection>
+    </resultMap>
+    <select id="getTeacher" resultMap="teacherStudent">
+        SELECT s.`id` sid,s.`name` sname,t.`name` tname,t.`id` tid
+        FROM teacher t
+        INNER JOIN student s
+        ON t.`id`=s.`tid`
+        WHERE t.`id`=#{tid}
+    </select>
+
+<!--    ==============================================-->
+    <select id="getTeacher2">
+
+    </select>
+</mapper>
